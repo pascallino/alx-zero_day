@@ -41,6 +41,34 @@ curr->next = newnode;
 }
 }
 
+/* 100 -> 200 -> 300 -> 400 -> 500 -> NULL */
+void insertNodeinSortedList(ugonma **head, int age)
+{
+	ugonma *newnode = NULL;
+	newnode =(ugonma *)malloc(sizeof(ugonma));
+	if (newnode == NULL)
+		return;
+	/* NULL */
+	/* 100 -> NULL */
+	/* 100 -> 200 -> NULL */
+	/* 100 -> 200 -> 300 -> NULL */
+	newnode->age = age;
+	newnode->next = NULL;
+	if  (*head == NULL) /* this will only work for 100 only */
+	{
+		        *head = newnode;
+	}
+	else /* this is for subsequent nodes like 200, 300 , 400 etc */
+	{
+		ugonma *curr = *head;
+		while (curr->next != NULL && curr->next->age <= age)
+		{
+			        curr = curr->next;
+		}
+		newnode->next = curr->next;
+		curr->next = newnode;
+	}
+}
 
 /* 100 -> 200 -> 300 -> 400 -> 500 -> NULL */
 void insertNodeinSortedList(ugonma **head, int age)
